@@ -165,3 +165,23 @@ Ans:- Whenever conflict occurs while merging its better to go manually because a
 may result in something totally senseless and meaningless thing.The author must be well aware
 of the changes and hence at this time he should decide. At other times, automatic merging is 
 good enough.
+
+Effective use of staging area:-
+The staging area of git is really helpful and really powerful.
+When I do one thing and accidentally do something else, then I use the staging area to
+help me just stage the first thing and commit that.And if I'm ready to commit the 2nd thing,
+I can.If not, I can keep working on it.Its really a helpful tool to make sure that your 
+commits are only the thing you actually meant to commit, even though probably along the
+way, you do a lot of things.
+
+Explanation:-Suppose you want to add a feature to the project. This whole feature will be as 
+a single commit, because having too much commits also makes it very much clumsy to manage things.
+So, only at significantly important checkpoints, commits are made.
+Now this feature has several sub-modules,
+
+
+
+
+Git Reset (Stack overflow)
+--hard makes everything match the commit you've reset to. This is the easiest to understand, probably. All of your local changes get clobbered. One primary use is blowing away your work but not switching commits: git reset --hard means git reset --hard HEAD, i.e. don't change the branch but get rid of all local changes. The other is simply moving a branch from one place to another, and keeping index/work tree in sync. This is the one that can really make you lose work, because it modifies your work tree. Be very very sure you want to throw away local work before you run any reset --hard.
+--mixed is the default, i.e. git reset means git reset --mixed. It resets the index, but not the work tree. This means all your files are intact, but any differences between the original commit and the one you reset to will show up as local modifications (or untracked files) with git status. Use this when you realize you made some bad commits, but you want to keep all the work you've done so you can fix it up and recommit. In order to commit, you'll have to add files to the index again (git add ...).
