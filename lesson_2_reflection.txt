@@ -13,3 +13,29 @@ to make a commit to each logical change and one logical change may alter
 a few files not all, so we need to only commit only those altered files.
 This concept of staging area is good as it gives the user more power and
 customisation.
+
+Q.3 How to use git diff differently?
+Ans:- One common use that we saw is that it checks the difference between
+two commits taking their IDs as the argument.But,it can do much more.
+
+*Some imporant points:-
+(1)The staging area is the copy of the most recent commit untill we add
+any manually.
+(2)The repository is the .git hidden folder.
+(3)The working directory is the folder which we initiated with the
+git init command.
+
+All the commits in the repository have IDs.But the staging area and the
+working directory have no IDs.But its quite frequently required for the 
+git users to compare their working directory with the staging for changes.
+git diff with no arguments does this.This shows any changes that we have
+made but haven't added to the staging area.
+
+We can also use git diff to get the differences between the staging area 
+and the most common commit in the repository.
+git diff --staged does this for us.
+
+git reset --hard discards any changes in the working directory or the 
+staging area, i.e it reverts back the files in the working directory 
+to the stage when the last commit happened and makes the staging area
+empty(means equivalent to the recent commit itself).
