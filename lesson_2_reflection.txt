@@ -1,0 +1,15 @@
+Q.1 What happens when you initialise you repository?
+Ans:-When we make a simple directory a git repository by making use of 
+the command "git init", it creates a hidden .git directory inside our 
+pwd so as to store all the commits made by us. But initially it has no
+commits. So the 1st thing to do after initialising a repository is to
+make a commit.
+
+Q.2 How is the staging area different from the working directory and the
+repository? What value do you think it offers?
+Ans:-The staging area offers us the facility of commiting selective files
+instead of all the files in a commit. It is helpful since it is advised
+to make a commit to each logical change and one logical change may alter
+a few files not all, so we need to only commit only those altered files.
+This concept of staging area is good as it gives the user more power and
+customisation.
