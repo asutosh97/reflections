@@ -39,3 +39,129 @@ git reset --hard discards any changes in the working directory or the
 staging area, i.e it reverts back the files in the working directory 
 to the stage when the last commit happened and makes the staging area
 empty(means equivalent to the recent commit itself).
+
+Q.4 How can you use the staging area to make sure you have one commit
+per logical change?
+Ans:-After making each logical change, we'll add only those files to the
+staging area that were changed, and commit them.
+
+*NOTE:-Suppose we have 3 files 1.c 2.c and 3.c
+We have made some previous commits.If we make some changes to 1.c and 2.c 
+and commit them, the file 3.c is copied from the latest commit as it is.
+
+In general,all the files that are present in the working directory which 
+were atleast once commited to the repository,if now we make a commit that
+doesn't contain some of the files in the pwd, the latest version of these 
+uncommited files that were once commited to the repository will be copied
+to this newly made commit without any change.
+
+Git allows branching.MASTER is the name given to the main branch.Everytime
+we create a git repository using git init, a master branch gets created for
+us.In the example shown in the video, there are 3 branches,:-Master,Italian
+and the Exp.
+Earlier we have seen that when we checked out earlier commits,we got the 
+message of detached head. Basically git was warning us that we were looking
+at a comment that was not labelled with a branch name.
+Earlier we have only been in detached head state(commit previous than the
+latest one) or on the master branch(latest commit).
+It is possible to checkout a branch in the same way we checked out commits,
+expcept for the human readable branch name rather than sequence of characters.
+
+If we checkout a branch and make a commit,the branch level automatically gets
+updated to the new level.(i.e. the branch level detaches itself from the previous
+commit and gets associated with the new one).
+As a terminology, we refer to the last commit on a branch as being a tip 
+of that branch.
+It is also possible to have multiple branch levels attached to a single branch 
+level.But making a new commit will only update the branch we have checked out
+and leave others alone.
+It is also possible to combine two branches. This feature is known as merging.
+
+Q.5 What are some situations when branches would be helpful in keeping your 
+history organized? How would branches help?
+Ans:-Branches are used when we want to make some experimental changes to our
+project without affecting the stability or endangering the original one.
+It can used as for a context switching, whenever we add a new feature.
+Branches helps us in keeping the project organised especially when we share it
+publicly.
+
+Branches helps us in keeping things organised while working with others.
+If me and my collaberator make the changes to the same branch,we can't easily
+work on separate features simultaneously.
+
+A common work flow for people working on projects together includes making a 
+new branch for every new feature or a bug fix.Once the features and bug fixes 
+are completed, the author can either update master to either point to the tip
+of any new branch or if the master branch has undergone anychange then merge
+it with this master branch using git merge feature.
+
+Revisiting Detached head message:-
+Head  refers to the commit we are currently in.
+
+Suppose head is pointing to any commit, (not necessarily tail).
+Then if we create a branch by typing 
+git branch <branch_name>
+then the new branch tag is associated with this commit.
+If we have checkout this branch and then commmit sebsequently,then the branch will
+update itself to the lastest commit.
+
+Each commit stores information about its parent commit so that while printing git
+log,we get all the commits in sequence.
+
+Merging Files:
+If the data is present in the original file or at the point of divergence of the
+branches and not present in either one of them then in the end merge it will be absent
+whereas if the original file doesn't contain some data but either of the branches have 
+it then it will be included in the merge.
+
+How git does the merging process?
+Ans:- Consider we have a project with master branch. At some point of time,
+we branched out a coins branch from it, laterwards we further had some changes 
+in the master branch also.
+*NOTE:-Git also in its memory stores the point of diversion of the branches, the
+state of all files in the repository at that time.
+Using these three commits(at the branching point, and the commits at the tip of
+the two branches),Git can create a combined version of the two branches using the 
+similar strategy explained above.
+This combined version will also be as a commit.
+But what will be the parent of this new commit?
+->It turns out that when we create a merge commit,that commit stores information about
+both of its parentsSince the goal of this merge is to get the contents of the coins branch
+into the master branch,this new commit will be the new tip of the master branch, i.e 
+the master branch gets updated.The process is also called as "merging the coin branch 
+into the master branch".
+After the merge,the master branch will have all the changes it had before plus the
+changes from the coins branch.
+Git log will return all the commits from both the branch in order of time.
+The "coins" branch tag is still with the same commit(which earlier was the tip of coins
+branch).
+Since now we can access this commit from the master branch itself, the tag of coins branch
+is no more required.So, we can delete the coins branch.
+Note that deleting branches means deleting level.THe commits will still be there.
+However, if no branch can reach the commit, deleting a branch does effectively discard
+its commits.
+
+The merging of the commits that gets displayed on git log has an intersting side effect 
+on git diff.Suppose we want to see the difference between two consecutive commits as listed 
+in the log.Note that the commits in the log are sorted according to time.
+But it happens to be that the prior one isn't the parent to the later commit, i.e these two
+commits belong to two different branches.So, if we use "git diff" to see difference in these
+two commits, we'll notice quite a few changes.But actually, the changes made with that commit
+from its parent would be very small.
+To see just the changes introduced by a commit, we'll have to "diff" it against its parent.
+But we now don't know the parent of the commit due to the mix up.
+Git has a command called "git show" which will show us what changes were introduced by a 
+commit compared to its parent.Its takes as argument the commit ID of the commit whose changes 
+are to be seen.Hence we can see the changes a commit made without knowing which its parent 
+was.
+The coins branch level no more required.
+It can be deleted by
+git branch -d coins
+
+Merging Conflicts:-
+
+Q. What are the pros and cons of Git’s automatic merging vs. always doing merges manually?
+Ans:- Whenever conflict occurs while merging its better to go manually because automatic
+may result in something totally senseless and meaningless thing.The author must be well aware
+of the changes and hence at this time he should decide. At other times, automatic merging is 
+good enough.
