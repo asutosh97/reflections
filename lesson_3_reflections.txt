@@ -1,1 +1,2 @@
 Q.1 When would you want to create a remote repository rather than keeping all your work local?
+Ans:- When more than one people are working on a project, they need a platform to share their work as they progress.So its necessary to share it rather than confining it to their local system.
