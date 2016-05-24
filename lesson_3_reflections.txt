@@ -1,2 +1,5 @@
 Q.1 When would you want to create a remote repository rather than keeping all your work local?
 Ans:- When more than one people are working on a project, they need a platform to share their work as they progress.So its necessary to share it rather than confining it to their local system.
+
+Q.2 Why might you want to always pull changes manually rather than having Git automatically stay up-to-date with your remote repository?
+Ans:-Incase if GitHub automatically get updated with our local version after every single commit,we might end up making things public before they are fully ready,since new features often require multiple commits.
