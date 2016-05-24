@@ -3,3 +3,8 @@ Ans:- When more than one people are working on a project, they need a platform t
 
 Q.2 Why might you want to always pull changes manually rather than having Git automatically stay up-to-date with your remote repository?
 Ans:-Incase if GitHub automatically get updated with our local version after every single commit,we might end up making things public before they are fully ready,since new features often require multiple commits.
+
+Q.3 Describe the differences between forks, clones, and branches. When would you use one instead of another?
+Ans:-Forks is used when we are making a copy of a repository where source and dsetination repository are on the GitHub server itself.
+Clones are used when the destination repository is local machine.
+Branching is used on the same repository when we just want to try out some other features and play around.
